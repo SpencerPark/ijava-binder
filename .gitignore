@@ -1,0 +1,6 @@
+# Intellij
+
+*.iml
+.idea
+
+.ipynb_checkpoints/
