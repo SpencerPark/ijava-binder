@@ -1,23 +1,19 @@
-FROM gradle:jdk9 as kernel-builder
+FROM gradle:4.8.1-jdk10 as kernel-builder
 
 USER root
 
-# Install the base dependencies
-RUN git clone https://github.com/SpencerPark/jupyter-jvm-basekernel.git --depth 1 \
-  && cd jupyter-jvm-basekernel/ \
-  && gradle publishToMavenLocal
-
 # Install the kernel
-RUN git clone https://github.com/SpencerPark/IJava.git --depth 1
+RUN curl -L https://github.com/SpencerPark/IJava/archive/v1.1.0.tar.gz > v1.1.0.tar.gz \
+  && tar xf v1.1.0.tar.gz
 
 COPY configure-ijava-install.gradle /configure-ijava-install.gradle
 
-RUN cd IJava/ \
+RUN cd IJava-1.1.0/ \
   && gradle zipKernel -I /configure-ijava-install.gradle \
   && cp build/distributions/ijava-kernel.zip /ijava-kernel.zip
 
 
-FROM openjdk:9.0.1-11-jdk
+FROM openjdk:10.0.1-10-jdk
 
 ENV NB_USER jovyan
 ENV NB_UID 1000
@@ -31,7 +27,7 @@ RUN adduser --disabled-password \
 RUN apt-get update
 RUN apt-get install -y python3-pip
 
-RUN pip3 install --no-cache-dir notebook==5.*
+RUN pip3 install --no-cache-dir notebook==5.5.* jupyterlab==0.32.*
 
 COPY --from=kernel-builder /ijava-kernel.zip ijava-kernel.zip
 
