@@ -3,12 +3,12 @@ FROM gradle:4.8.1-jdk10 as kernel-builder
 USER root
 
 # Install the kernel
-RUN curl -L https://github.com/SpencerPark/IJava/archive/v1.1.0.tar.gz > v1.1.0.tar.gz \
-  && tar xf v1.1.0.tar.gz
+RUN curl -L https://github.com/SpencerPark/IJava/archive/v1.1.1.tar.gz > v1.1.1.tar.gz \
+  && tar xf v1.1.1.tar.gz
 
 COPY configure-ijava-install.gradle /configure-ijava-install.gradle
 
-RUN cd IJava-1.1.0/ \
+RUN cd IJava-1.1.1/ \
   && gradle zipKernel -I /configure-ijava-install.gradle \
   && cp build/distributions/ijava-kernel.zip /ijava-kernel.zip
 
