@@ -1,19 +1,21 @@
-FROM gradle:4.8.1-jdk10 as kernel-builder
+FROM openjdk:10.0.1-10-jdk
+
+RUN apt-get update
+RUN apt-get install -y python3-pip
+
+RUN pip3 install --no-cache-dir notebook==5.5.* jupyterlab==0.32.*
 
 USER root
 
-# Install the kernel
-RUN curl -L https://github.com/SpencerPark/IJava/archive/v1.1.2.tar.gz > v1.1.2.tar.gz \
-  && tar xf v1.1.2.tar.gz
+# Download the kernel release
+RUN curl -L https://github.com/SpencerPark/IJava/releases/download/v1.2.0/ijava-1.2.0.zip > ijava-kernel.zip
 
-COPY configure-ijava-install.gradle /configure-ijava-install.gradle
+# Unpack and install the kernel
+RUN unzip ijava-kernel.zip -d ijava-kernel \
+  && cd ijava-kernel \
+  && python3 install.py --sys-prefix
 
-RUN cd IJava-1.1.2/ \
-  && gradle zipKernel -I /configure-ijava-install.gradle \
-  && cp build/distributions/ijava-kernel.zip /ijava-kernel.zip
-
-
-FROM openjdk:10.0.1-10-jdk
+# Set up the user environment
 
 ENV NB_USER jovyan
 ENV NB_UID 1000
@@ -24,21 +26,11 @@ RUN adduser --disabled-password \
     --uid $NB_UID \
     $NB_USER
 
-RUN apt-get update
-RUN apt-get install -y python3-pip
-
-RUN pip3 install --no-cache-dir notebook==5.5.* jupyterlab==0.32.*
-
-COPY --from=kernel-builder /ijava-kernel.zip ijava-kernel.zip
-
-RUN unzip ijava-kernel.zip -d ijava-kernel \
-  && cd ijava-kernel \
-  && python3 install.py --sys-prefix
-
 COPY . $HOME
 RUN chown -R $NB_UID $HOME
 
 USER $NB_USER
 
+# Launch the notebook server
 WORKDIR $HOME
 CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
