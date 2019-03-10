@@ -17,5 +17,6 @@ In the future this repository may be populated with more example notebooks but i
 
 If you are writing Jupyter notebooks in Java and publishing them on GitHub you are more than welcome (and encouraged!) to take any scripts from here and add them to your repository so that visitors may try out your notebooks without any installation.
 
-Likely all that is needed is the `Dockerfile` at the top level of your repo. Then add some badges from https://mybinder.readthedocs.io/en/latest/howto/badges.html to your `README` and everything should be good to go! If you have a repository with [IJava](https://github.com/SpencerPark/IJava) notebooks, please feel free to open a PR (or raise an issue) adding a link in the list above.
+Likely all that is needed is the `Dockerfile` at the top level of your repo and the `requirements.txt` to use the same versions for jupyter packages. Then add some badges from https://mybinder.readthedocs.io/en/latest/howto/badges.html to your `README` and everything should be good to go! If you have a repository with [IJava](https://github.com/SpencerPark/IJava) notebooks, please feel free to open a PR (or raise an issue) adding a link in the list above.
 
+The `requirements.txt` is generated from a working installation with `pipdeptree -f --warn silence -p jupyter,jupyterlab | sed 's/^\s*//' | sort | uniq` which should pin down all related library versions.
