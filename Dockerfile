@@ -3,7 +3,11 @@ FROM openjdk:10.0.1-10-jdk
 RUN apt-get update
 RUN apt-get install -y python3-pip
 
-RUN pip3 install --no-cache-dir notebook==5.5.* jupyterlab==0.32.*
+# add requirements.txt, written this way to gracefully ignore a missing file
+COPY . .
+RUN ([ -f requirements.txt ] \
+    && pip3 install --no-cache-dir -r requirements.txt) \
+        || pip3 install --no-cache-dir jupyter jupyterlab
 
 USER root
 
