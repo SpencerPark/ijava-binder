@@ -1,4 +1,4 @@
-FROM openjdk:10.0.1-10-jdk
+FROM openjdk:12.0.1-jdk
 
 RUN apt-get update
 RUN apt-get install -y python3-pip
@@ -12,7 +12,7 @@ RUN ([ -f requirements.txt ] \
 USER root
 
 # Download the kernel release
-RUN curl -L https://github.com/SpencerPark/IJava/releases/download/v1.2.0/ijava-1.2.0.zip > ijava-kernel.zip
+RUN curl -L https://github.com/SpencerPark/IJava/releases/download/v1.3.0/ijava-1.3.0.zip > ijava-kernel.zip
 
 # Unpack and install the kernel
 RUN unzip ijava-kernel.zip -d ijava-kernel \
