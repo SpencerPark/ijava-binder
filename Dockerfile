@@ -31,7 +31,7 @@ RUN yum install shadow-utils -y
 RUN adduser   --uid $NB_UID \
     $NB_USER
 
-COPY *.ipynb $HOME
+COPY *.ipynb $HOME/
 RUN chown -R $NB_UID $HOME
 
 USER $NB_USER
