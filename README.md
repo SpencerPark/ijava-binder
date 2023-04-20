@@ -1,7 +1,10 @@
 # ijava-binder
 
 
-[![Launch IJava binder][binder-badge-img]](https://mybinder.org/v2/gh/SpencerPark/ijava-binder/master) [![Launch IJava lab binder][binder-lab-badge-img]](https://mybinder.org/v2/gh/SpencerPark/ijava-binder/master?urlpath=lab)
+Binder launch using this fork: [![Launch IJava binder][binder-badge-img]](https://mybinder.org/v2/gh/bnalgo/ijava-binder/master) [![Launch IJava lab binder][binder-lab-badge-img]](https://mybinder.org/v2/gh/bnalgo/ijava-binder/master?urlpath=lab)
+
+Binder launch using the original: [![Launch IJava binder][binder-badge-img]](https://mybinder.org/v2/gh/SpencerPark/ijava-binder/master) [![Launch IJava lab binder][binder-lab-badge-img]](https://mybinder.org/v2/gh/SpencerPark/ijava-binder/master?urlpath=lab)
+
 
 A [Binder](https://mybinder.org/) compatible repository to try out the [IJava](https://github.com/SpencerPark/IJava) kernel with just a web browser. Depending on if the docker image is already built, spawning the notebook may take some time and so please be patient with it.
 
@@ -14,6 +17,7 @@ In the future this repository may be populated with more example notebooks but i
 | https://github.com/michaelmior/calcite-notebooks | [![Launch calcite-notebooks binder][binder-badge-img]](https://mybinder.org/v2/gh/michaelmior/calcite-notebooks/master) [![Launch calcite-notebooks lab binder][binder-lab-badge-img]](https://mybinder.org/v2/gh/michaelmior/calcite-notebooks/master?urlpath=lab) |
 | https://github.com/inspire99/vavr-notebook | [![Launch vavr-notebook binder][binder-badge-img]](https://mybinder.org/v2/gh/inspire99/vavr-notebook/master) [![Launch vavr-notebook lab binder][binder-lab-badge-img]](https://mybinder.org/v2/gh/inspire99/vavr-notebook/master?urlpath=lab) |
 | https://github.com/padreati/rapaio-notebooks | [![Launch rapaio-notebooks binder][binder-badge-img]](https://mybinder.org/v2/gh/padreati/rapaio-notebooks/master?filepath=BriefPreview.ipynb) [![Launch rapaio-notebook lab binder][binder-lab-badge-img]](https://mybinder.org/v2/gh/padreati/rapaio-notebooks/master?urlpath=lab&filepath=BriefPreview.ipynb) |
+| QuantLib Java Notebooks |  [![Launch QuantLib Java binder][binder-badge-img]](https://mybinder.org/v2/gh/bnalgo/QuantLibJavaNotebooks/main)[![Launch QuantLib JAva lab binder][binder-lab-badge-img]](https://mybinder.org/v2/gh/bnalgo/QuantLibJavaNotebooks/main) |
 
 ## Notebook authors
 
