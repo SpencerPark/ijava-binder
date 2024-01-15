@@ -1,0 +1,5 @@
+name: ijava
+channels:
+  - conda-forge
+dependencies:
+  - openjdk

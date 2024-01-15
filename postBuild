@@ -1,0 +1,7 @@
+#!/bin/bash
+set -ex
+
+curl -L https://github.com/SpencerPark/IJava/releases/download/v1.3.0/ijava-1.3.0.zip > ijava-kernel.zip
+unzip ijava-kernel.zip -d ijava-kernel
+(cd ijava-kernel && python3 install.py --sys-prefix)
+rm -rf ijava-kernel/ ijava-kernel.zip
