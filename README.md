@@ -7,6 +7,28 @@ A [Binder](https://mybinder.org/) compatible repository to try out the [IJava](h
 
 In the future this repository may be populated with more example notebooks but it mainly serves to meet the requirements for using the [Binder](https://mybinder.org/) service to play around with the [IJava](https://github.com/SpencerPark/IJava) kernel.
 
+## Running locally
+
+Build and start a container with port 8888 exposed from the container.
+
+```sh
+docker build -t ijava:1.3.0-snapshot .
+docker run -i -p 8888:8888 -t ijava:1.3.0-snapshot
+# or to work with files from the host
+docker run -i -p 8888:8888 -v "$(pwd):/home/jovyan/work" -t ijava:1.3.0-snapshot
+```
+
+The jupyter server should automatically start in the container and print something like:
+```
+    To access the server, open this file in a browser:
+        file:///home/jovyan/.local/share/jupyter/runtime/jpserver-1-open.html
+    Or copy and paste one of these URLs:
+        http://710876c77a01:8888/tree?token=<token>
+        http://127.0.0.1:8888/tree?token=<token>
+```
+
+Open the link `http://127.0.0.1:8888/tree?token=<token>` in your browser on the host machine to connect. Optionally use `/lab` or `/doc` instead of `/tree` to go to the jupyterlab home page instead.
+
 ## Other binders running the IJava kernel
 
 | Notebook Source Repository | Try online |
