@@ -1,10 +1,10 @@
-FROM openjdk:11.0.3-jdk
+FROM eclipse-temurin:21-jdk-jammy
 
 RUN apt-get update
-RUN apt-get install -y python3-pip
+RUN apt-get install -y python3-pip unzip
 
 # add requirements.txt, written this way to gracefully ignore a missing file
-COPY . .
+COPY requirements.tx[t] .
 RUN ([ -f requirements.txt ] \
     && pip3 install --no-cache-dir -r requirements.txt) \
         || pip3 install --no-cache-dir jupyter jupyterlab
@@ -37,4 +37,4 @@ USER $NB_USER
 
 # Launch the notebook server
 WORKDIR $HOME
-CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+CMD ["jupyter", "notebook", "--ip", "0.0.0.0", "--no-browser"]
