@@ -37,4 +37,4 @@ USER $NB_USER
 
 # Launch the notebook server
 WORKDIR $HOME
-CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+CMD ["jupyter", "notebook", "--ip", "0.0.0.0", "--no-browser"]
